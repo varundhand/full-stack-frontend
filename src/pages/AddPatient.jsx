@@ -6,7 +6,7 @@ export default function AddPatient({ setView }) {
   const [doctorAssigned, setDoctorAssigned] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
 
-  const API_URL = "http://localhost:3000/api/v1/patient";
+  const API_URL = "https://clinic-backend-se02.onrender.com/api/v1/patient";
 
   const submit = async (e) => {
     e.preventDefault();

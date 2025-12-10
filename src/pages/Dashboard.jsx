@@ -5,12 +5,16 @@ import axios from "axios";
 export default function Dashboard({ setView }) {
   const [patients, setPatients] = useState([]);
 
-  const API_URL = "http://localhost:3000/api/v1/patient";
+  const API_URL = "https://clinic-backend-se02.onrender.com/api/v1/patient";
 
   const loadPatients = async () => {
     try {
-      const res = await axios.get(API_URL);
-      setPatients(res.data);
+      axios.get('https://clinic-backend-se02.onrender.com/api/v1/patient')
+      .then(res => {
+        setPatients(res.data); 
+        console.log(res.data); // <--- This one is correct and safe
+      })
+      
     } catch (err) {
       console.log(err);
     }
@@ -21,12 +25,13 @@ export default function Dashboard({ setView }) {
       await axios.delete(`${API_URL}/${id}`);
       loadPatients();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
   useEffect(() => {
     loadPatients();
+    // DELETED THE ERROR LINE HERE
   }, []);
 
   return (
